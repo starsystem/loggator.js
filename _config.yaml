@@ -1,0 +1,15 @@
+sass:
+    sass_dir: _sass
+    style: :compressed
+
+gems:
+    - jekyll-github-metadata
+
+defaults:
+    -
+        scope:
+            path: "" # an empty string here means all files in the project
+        values:
+            layout: "default"
+            menu: 0 # for navigation
+            comments: false # for parliamone
