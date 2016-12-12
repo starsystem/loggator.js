@@ -1,19 +1,20 @@
 <!doctype html>
 <title>{{ site.github.project_title | capitalize }}</title>
 <meta charset="utf-8">
-<link rel="stylesheet" href="{{ site.url }}/assets/css/style.css">
+<link rel="stylesheet" href="{{ '/assets/css/style.css' | absolute_url }}">
 
 <header>
 	<h1>{{ site.github.project_title | capitalize }}</h1>
 	<p>{{ site.github.project_tagline }}</p>
-	<nav>{% for p in site.pages %}<a href="{{ site.url }}{{ p.url }}"{% if page.url == p.url %} class="active"{% endif %}>{{ p.title | upcase }}</a>{% endfor %}<a href="" class="float-right">Login</a></nav>
+	<nav>{% for p in site.pages %}<a href="{{ p.url | absolute_url }}"{% if page.url == p.url %} class="active"{% endif %}>{{ p.title | upcase }}</a>{% endfor %}<a href="" class="float-right">Login</a></nav>
+	{{ absolute_url }}
 </header>
 
 <main>{{ content }}</main>
 
 <footer>Repository: <a href="{{ site.github.repository_url }}">{{ site.github.repository_nwo }}</a><a href="#top" class="float-right">top</a></footer>
 
-<script src="{{ site.url }}/assets/javascript/loggator.js"></script>
+<script src="{{ '/assets/javascript/loggator.js' | absolute_url }}"></script>
 <script>
 	var logged = loggator();
 	console.log(logged);
