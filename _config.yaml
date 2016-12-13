@@ -11,5 +11,5 @@ defaults:
             path: "" # an empty string here means all files in the project
         values:
             layout: "default"
-            menu: 0 # for navigation
+            navigation_weight: 0 # for navigation
             comments: false # for parliamone

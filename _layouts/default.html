@@ -6,14 +6,16 @@
 <header>
 	<h1>{{ site.github.project_title | capitalize }}</h1>
 	<p>{{ site.github.project_tagline }}</p>
-	<nav>{% for p in site.pages %}<a href="{{ p.url | absolute_url }}"{% if page.url == p.url %} class="active"{% endif %}>{{ p.title | upcase }}</a>{% endfor %}<a href="" class="float-right">Login</a></nav>
-	{{ absolute_url }}
+	{% include navigation.html %}
 </header>
 
 <main>{{ content }}</main>
 
+{% include templates.html %}
+
 <footer>Repository: <a href="{{ site.github.repository_url }}">{{ site.github.repository_nwo }}</a><a href="#top" class="float-right">top</a></footer>
 
+<script src="{{ '/assets/javascript/helpers.js' | absolute_url }}"></script>
 <script src="{{ '/assets/javascript/loggator.js' | absolute_url }}"></script>
 <script>
 	var logged = loggator();
