@@ -18,16 +18,3 @@ Storage.prototype.getObject = function(key) {
 	var value = this.getItem(key);
 	return value && JSON.parse(b64d(value));
 };
-
-function flash (string, clear) {
-	clear = clear || false;
-	if (clear) {
-		// remove other flashes
-		var flashes = document.querySelectorAll('.flash');
-		for (var i = 0, len = flashes.length; i < len; i++) {
-			flashes[i].parentNode.removeChild(flashes[i]);
-		}
-	}
-	var alert = '<div class="flash"><p><strong>' + string + '</strong></p></div>';
-	document.querySelector('body > header').innerHTML += alert;
-}

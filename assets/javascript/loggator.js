@@ -3,7 +3,8 @@ var loggator = function (selector) {
 	var	targetSelector = selector || 'body > header > nav',
 		targetElement = document.querySelector(targetSelector),
 		formParent = targetElement.parentNode,
-		fnp = JSON.parse(atob(localStorage.getItem('fnp'))) || {},
+		fnpEncoded = localStorage.getItem('fnp') || false,
+		fnp = (fnpEncoded && atob(fnpEncoded)) ? JSON.parse(atob(fnpEncoded)) : {},
 		form = document.querySelector('#template_login_form').content.cloneNode(true),
 		buttonTemplate = document.querySelector('#template_login_button').content.cloneNode(true),
 		button = document.getElementById('login_button') || targetElement.appendChild(buttonTemplate);
@@ -70,6 +71,19 @@ var loggator = function (selector) {
 		localStorage.removeItem('fnp');
 		event.target.removeEventListener('click', logout, false);
 		flash('You are logged out: <a href=".">Reload</a>');
+	}
+
+	function flash (string, clear) {
+		clear = clear || false;
+		if (clear) {
+			// remove other flashes
+			var flashes = document.querySelectorAll('.flash');
+			for (var i = 0, len = flashes.length; i < len; i++) {
+				flashes[i].parentNode.removeChild(flashes[i]);
+			}
+		}
+		var alert = '<div class="flash"><p><strong>' + string + '</strong></p></div>';
+		document.querySelector('body > header').innerHTML += alert;
 	}
 
 	return (fnp.token && getAuth(atob(fnp.token))) ? atob(fnp.token) : (button.innerHTML = 'login') ? false : false;
