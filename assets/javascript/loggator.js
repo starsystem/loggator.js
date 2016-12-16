@@ -73,3 +73,4 @@ var loggator = function (selector) {
 
 	return (fnp.token && getAuth(atob(fnp.token))) ? atob(fnp.token) : (button.innerHTML = 'login') ? false : false;
 };
+var logged = loggator();
