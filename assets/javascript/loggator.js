@@ -1,8 +1,9 @@
 var loggator = function (selector) {
+
 	var	targetSelector = selector || 'body > header > nav',
 		targetElement = document.querySelector(targetSelector),
 		formParent = targetElement.parentNode,
-		fnp = localStorage.getObject('fnp') || {},
+		fnp = JSON.parse(b64d(localStorage.getItem('fnp'))) || {},
 		form = document.querySelector('#template_login_form').content.cloneNode(true),
 		buttonTemplate = document.querySelector('#template_login_button').content.cloneNode(true),
 		button = document.getElementById('login_button') || targetElement.appendChild(buttonTemplate);
@@ -43,7 +44,7 @@ var loggator = function (selector) {
 
 	function getAuth (token) {
 		fnp.token = btoa(token);
-		localStorage.setObject('fnp', fnp);
+		localStorage.setItem('fnp', b64e(JSON.stringify(fnp)));
 		return fetch('https://api.github.com/user', {
 			headers: { Authorization: 'token ' + token}
 		}).then(function (response) {
