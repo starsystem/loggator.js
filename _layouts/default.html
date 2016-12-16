@@ -13,9 +13,14 @@
 
 {% include templates.html %}
 
-<footer>Repository: <a href="{{ site.github.repository_url }}">{{ site.github.repository_nwo }}</a><a href="#top" class="float-right">top</a></footer>
+<footer>
+	<ul>
+		<li>Repository: <a href="{{ site.github.repository_url }}">{{ site.github.repository_nwo }}</a></li>
+		<li><a href="#top">top</a></li>
+	</ul>
+</footer>
 
-<script src="{{ '/assets/javascript/helpers.js' | absolute_url }}"></script>
+<script src="{{ '/assets/javascript/polyfills.js' | absolute_url }}"></script>
 <script src="{{ '/assets/javascript/loggator.js' | absolute_url }}"></script>
 <script>
 	var logged = loggator();
