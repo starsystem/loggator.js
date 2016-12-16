@@ -1,5 +1,6 @@
 ---
 title: markdown
+permalink: /markdown
 ---
 # Typography
 
