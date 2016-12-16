@@ -1,0 +1,69 @@
+html
+	overflow-y: scroll
+
+body
+	color: #222
+	margin: 1em auto
+
+// links
+
+a[href]
+	color: blue
+	&:hover
+		text-decoration: none
+	&:active
+		color: white
+	&.active
+		color: red
+		text-decoration: none
+		cursor: default
+
+// main layout
+
+main
+	margin: 2em 1em
+
+header
+	font-size: larger
+	font-weight: bold
+	border-bottom: 1px solid #222
+	h1, p
+		margin: 0
+		text-align: center
+	nav
+		margin: 1em
+		a
+			padding: .7em
+			text-transform: uppercase
+
+footer
+	border-top: 1px solid #222
+	padding: 2em 1em
+
+// header and footer navigation
+
+footer,
+header nav
+	ul
+		margin: 0
+		padding: 0
+		border: 0
+		li:last-of-type
+			float: right
+		li
+			list-style-image: none
+			list-style-type: none
+			display: inline-block
+			vertical-align: middle
+			white-space: nowrap
+
+// flash div and loggator.js form
+
+.flash,
+body > header > form
+	font-weight: normal
+	text-align: center
+	padding: 1em
+	background: lemonchiffon
+	border-top: 1px solid #222
+	font-size: initial
