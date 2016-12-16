@@ -3,13 +3,19 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | absolute_url }}">
 
+<script src="{{ '/assets/javascript/polyfills.js' | absolute_url }}"></script>
+<script src="{{ '/assets/javascript/loggator.js' | absolute_url }}" defer></script>
+{% include pagescript.html %}
+
 <header>
 	<h1>{{ site.github.project_title | capitalize }}</h1>
 	<p>{{ site.github.project_tagline }}</p>
 	{% include navigation.html %}
 </header>
 
-<main>{{ content }}</main>
+<main>
+{% include urls.html %}
+{{ content }}</main>
 
 {% include templates.html %}
 
@@ -19,10 +25,3 @@
 		<li><a href="#top">top</a></li>
 	</ul>
 </footer>
-
-<script src="{{ '/assets/javascript/polyfills.js' | absolute_url }}"></script>
-<script src="{{ '/assets/javascript/loggator.js' | absolute_url }}"></script>
-<script>
-	var logged = loggator();
-	console.log(logged);
-</script>

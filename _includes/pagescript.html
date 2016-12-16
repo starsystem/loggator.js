@@ -1,0 +1,4 @@
+{% capture pagescript %}/assets/javascript/pages/{{ page.title }}.js{% endcapture %}
+{% for static_file in site.static_files %}{% if static_file.path == pagescript %}
+<script src="{{ pagescript | absolute_url }}" defer></script>
+{% endif %}{% endfor %}
