@@ -86,6 +86,7 @@ var loggator = function (selector) {
 		document.querySelector('body > header').innerHTML += alert;
 	}
 
+	if (!fnp.hasOwnProperty('token')) fnp.token = false;
 	return (fnp.token && getAuth(atob(fnp.token))) ? atob(fnp.token) : (button.innerHTML = 'login') ? false : false;
 };
 var logged = loggator();
