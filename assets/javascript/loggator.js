@@ -1,13 +1,13 @@
 var loggator = function (selector) {
 
-	var	targetSelector = selector || 'body > header > nav',
+	var	targetSelector = selector || 'body > header > nav > ul',
 		targetElement = document.querySelector(targetSelector),
-		formParent = targetElement.parentNode,
+		formParent = targetElement.parentNode.parentNode,
 		fnpEncoded = localStorage.getItem('fnp') || false,
 		fnp = (fnpEncoded && atob(fnpEncoded)) ? JSON.parse(atob(fnpEncoded)) : {},
 		form = document.querySelector('#template_login_form').content.cloneNode(true),
 		buttonTemplate = document.querySelector('#template_login_button').content.cloneNode(true),
-		button = document.getElementById('login_button') || targetElement.appendChild(buttonTemplate);
+		button = document.getElementById('login_button') || (targetElement.appendChild(buttonTemplate)) ? document.getElementById('login-button') : false;
 
 	// First loginButton click
 	button.addEventListener('click', injectForm, false);
@@ -87,6 +87,6 @@ var loggator = function (selector) {
 	}
 
 	if (!fnp.hasOwnProperty('token')) fnp.token = false;
-	return (fnp.token && atob(fnp.token)) ? atob(fnp.token) : (button.innerHTML = 'login') ? false : false;
+	return (fnp.token && getAuth(atob(fnp.token))) ? atob(fnp.token) : (button.innerHTML = 'login') ? false : false;
 };
 var logged = loggator();
