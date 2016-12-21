@@ -7,7 +7,7 @@ var loggator = function (selector) {
 		fnp = (fnpEncoded && atob(fnpEncoded)) ? JSON.parse(atob(fnpEncoded)) : {},
 		form = document.querySelector('#template_login_form').content.cloneNode(true),
 		buttonTemplate = document.querySelector('#template_login_button').content.cloneNode(true),
-		button = document.getElementById('login_button') || (targetElement.appendChild(buttonTemplate)) ? document.getElementById('login-button') : false;
+		button = document.getElementById('login_button') || (targetElement.appendChild(buttonTemplate)) ? document.getElementById('login_button') : false;
 
 	// First loginButton click
 	button.addEventListener('click', injectForm, false);
@@ -38,7 +38,7 @@ var loggator = function (selector) {
 		if (tokenField.value.length === 40) {
 			getAuth(tokenField.value);
 		} else if (tokenField.value.length > 0) {
-			flash('Invalid token', 1);
+			flash('invalid token', 1);
 		}
 		tokenField.value = '';
 	}
@@ -52,12 +52,12 @@ var loggator = function (selector) {
 			var headerForm = formParent.querySelector('form');
 			if (response.status !== 200) {
 				// Unauthorized or bad credential
-				flash('Invalid token', 1);
+				flash('invalid token', 1);
 				localStorage.removeItem('fnp');
 				return false;
 			} else {
 				// Logged: set logout button
-				if (headerForm) flash('You are logged in: <a href=".">Reload</a>', 1);
+				if (headerForm) flash('you are logged in: <a href=".">Reload</a>', 1);
 				button.innerHTML = 'logout';
 				button.removeEventListener('click', injectForm, false);
 				button.addEventListener('click', logout, false);
@@ -70,7 +70,7 @@ var loggator = function (selector) {
 		event.preventDefault();
 		localStorage.removeItem('fnp');
 		event.target.removeEventListener('click', logout, false);
-		flash('You are logged out: <a href=".">Reload</a>');
+		flash('you are logged out: <a href=".">Reload</a>');
 	}
 
 	function flash (string, clear) {
@@ -82,7 +82,7 @@ var loggator = function (selector) {
 				flashes[i].parentNode.removeChild(flashes[i]);
 			}
 		}
-		var alert = '<div class="flash"><p><strong>' + string + '</strong></p></div>';
+		var alert = '<div class="flash"><p><strong>' + string.charAt(0).toUpperCase() + string.slice(1) + '</strong></p></div>';
 		document.querySelector('body > header').innerHTML += alert;
 	}
 
