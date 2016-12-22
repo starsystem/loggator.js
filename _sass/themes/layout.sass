@@ -2,8 +2,10 @@ html
 	overflow-y: scroll
 
 body
-	color: #222
+	font: medium/1.5 Helvetica, sans-serif
 	margin: 1em auto
+	color: #222
+	max-width: 60em
 
 // links
 
@@ -57,12 +59,29 @@ header nav
 			vertical-align: middle
 			white-space: nowrap
 
+// code
+
+pre
+	background: #f7f7f7
+	padding: 1em
+	overflow: auto /* FIX */
+
+code
+	font: 1em Consolas, Menlo, Courier, monospace
+
+li > code, h2 code, h3 code
+	padding: 2px 4px 0
+	background: #f7f7f7
+	border: 1px solid #f1f1f1
+	border-radius: 3px
+
 // flash div and loggator.js form
 
 .flash,
 body > header > form
 	font-weight: normal
 	text-align: center
+	margin: 0
 	padding: 1em
 	background: lemonchiffon
 	border-top: 1px solid #222
