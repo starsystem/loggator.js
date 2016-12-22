@@ -33,13 +33,13 @@ var loggator = function (selector) {
 
 	function serveForm (event) {
 		event.preventDefault();
-		event.target.style.display = 'none';
-		flash('loading');
+		event.target.style.display = 'none'; // hide form
 		var tokenField = event.target.querySelector('form > input[type="password"]');
 		if (tokenField.value.length === 40) {
+			flash('loading');
 			getAuth(tokenField.value);
 		} else if (tokenField.value.length > 0) {
-			flash('invalid token', 1);
+			flash('invalid token');
 		}
 		tokenField.value = '';
 	}
@@ -50,15 +50,14 @@ var loggator = function (selector) {
 		return fetch('https://api.github.com/user', {
 			headers: { Authorization: 'token ' + token}
 		}).then(function (response) {
-			var headerForm = formParent.querySelector('form');
 			if (response.status !== 200) {
 				// Unauthorized or bad credential
-				flash('invalid token', 1);
+				flash('invalid token');
 				localStorage.removeItem('fnp');
 				return false;
 			} else {
 				// Logged: set logout button
-				if (headerForm) flash('you are logged in: <a href=".">Reload</a>', 1);
+				if (formParent.querySelector('form')) flash('you are logged in');
 				button.removeEventListener('click', injectForm, false);
 				button.addEventListener('click', logout, false);
 				return true;
@@ -70,20 +69,16 @@ var loggator = function (selector) {
 		event.preventDefault();
 		localStorage.removeItem('fnp');
 		event.target.removeEventListener('click', logout, false);
-		flash('you are logged out: <a href=".">Reload</a>');
+		flash('you are logged out');
 	}
 
-	function flash (string, clear) {
-		clear = clear || false;
-		if (clear) {
-			// remove other flashes
-			var flashes = document.querySelectorAll('.flash');
-			for (var i = 0, len = flashes.length; i < len; i++) {
-				flashes[i].parentNode.removeChild(flashes[i]);
-			}
+	function flash (string) {
+		var flashes = document.querySelectorAll('.flash');
+		for (var i = 0, len = flashes.length; i < len; i++) {
+			flashes[i].parentNode.removeChild(flashes[i]);
 		}
-		var alert = '<div class="flash"><p><strong>' + string.charAt(0).toUpperCase() + string.slice(1) + '</strong></p></div>';
-		document.querySelector('body > header').innerHTML += alert;
+		formParent.appendChild(document.getElementById('template_flash').content.cloneNode(true));
+		formParent.querySelector('.flash strong').innerHTML = string.charAt(0).toUpperCase() + string.slice(1) + ' <a href=".">Reload</a>';
 	}
 
 	if (!fnp.hasOwnProperty('token')) fnp.token = false;
