@@ -81,7 +81,9 @@ var loggator = function (selector) {
 		formParent.querySelector('.flash strong').innerHTML = string.charAt(0).toUpperCase() + string.slice(1) + ' <a href=".">Reload</a>';
 	}
 
+	console.log('checksum', fnp);
 	if (!fnp.hasOwnProperty('token')) fnp.token = false;
+	console.log('end', fnp.token);
 	return fnp.token && getAuth(atob(fnp.token)) ? (
 		button.innerHTML = 'logout',
 		atob(fnp.token)
