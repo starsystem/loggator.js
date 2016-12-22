@@ -2,6 +2,9 @@
 <title>{{ site.github.project_title | capitalize }}</title>
 <meta charset="utf-8">
 <link rel="stylesheet" href="{{ '/assets/css/style.css' | absolute_url }}">
+<script src="{{ '/assets/javascript/polyfills.js' | absolute_url }}"></script>
+<script src="{{ '/assets/javascript/loggator.js' | absolute_url }}" defer></script>
+{% include pagescript.html %}
 
 <header>
 	<h1>{{ site.github.project_title | capitalize }}</h1>
@@ -21,7 +24,3 @@
 		<li><a href="#top">top</a></li>
 	</ul>
 </footer>
-
-<script src="{{ '/assets/javascript/polyfills.js' | absolute_url }}"></script>
-<script src="{{ '/assets/javascript/loggator.js' | absolute_url }}" defer></script>
-{% include pagescript.html %}
