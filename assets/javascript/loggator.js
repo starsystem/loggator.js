@@ -59,7 +59,6 @@ var loggator = function (selector) {
 			} else {
 				// Logged: set logout button
 				if (headerForm) flash('you are logged in: <a href=".">Reload</a>', 1);
-				button.innerHTML = 'logout';
 				button.removeEventListener('click', injectForm, false);
 				button.addEventListener('click', logout, false);
 				return true;
@@ -88,6 +87,12 @@ var loggator = function (selector) {
 	}
 
 	if (!fnp.hasOwnProperty('token')) fnp.token = false;
-	return (fnp.token && getAuth(atob(fnp.token))) ? atob(fnp.token) : (button.innerHTML = 'login') ? false : false;
+	return fnp.token && getAuth(atob(fnp.token)) ? (
+		button.innerHTML = 'logout',
+		atob(fnp.token)
+	) : (
+		button.innerHTML = 'login',
+		false
+	);
 };
 var logged = loggator();
