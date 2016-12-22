@@ -27,7 +27,7 @@ permalink: /metadata
 ## Releases
 
 - `site.github.releases` – {{ site.github.releases.size }}
-{% for r in site.github.releases %}  - `{{ r.tag_name }}` – {{ r.name }} {{ r.created_at | date_to_string }}
+{% for r in site.github.releases %}  - `{{ r.tag_name }}` – {{ r.name | xml_escape }} *({{ r.created_at | date_to_string }})*
 {% endfor %}
 
 ## Repositories
