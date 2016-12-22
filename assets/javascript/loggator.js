@@ -5,10 +5,13 @@ var loggator = function (selector) {
 		formParent = targetElement.parentNode.parentNode,
 		fnpEncoded = localStorage.getItem('fnp') || false,
 		fnp = (fnpEncoded && atob(fnpEncoded)) ? JSON.parse(atob(fnpEncoded)) : {},
+		bug1 = console.log('bug1', fnp),
 		form = document.getElementById('template_login_form').content.cloneNode(true),
 		buttonTemplate = document.getElementById('template_login_button').content.cloneNode(true),
+		bug2 = console.log('bug2', fnp),
 		buttonCreate = document.getElementById('login_button') ? true : targetElement.appendChild(buttonTemplate),
-		button = document.getElementById('login_button');
+		button = document.getElementById('login_button'),
+		bug3 = console.log('bug3', fnp);
 
 	// First loginButton click
 	button.addEventListener('click', injectForm, false);
@@ -80,7 +83,6 @@ var loggator = function (selector) {
 		formParent.appendChild(document.getElementById('template_flash').content.cloneNode(true));
 		formParent.querySelector('.flash strong').innerHTML = string.charAt(0).toUpperCase() + string.slice(1) + ' <a href=".">Reload</a>';
 	}
-	var end = console.log('end', fnp);
 
 	if (!fnp.hasOwnProperty('token')) fnp.token = false;
 	return fnp.token && getAuth(atob(fnp.token)) ? (
