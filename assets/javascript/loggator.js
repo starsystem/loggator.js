@@ -4,6 +4,7 @@ var loggator = function (selector) {
 		targetElement = document.querySelector(targetSelector),
 		formParent = targetElement.parentNode.parentNode,
 		fnpEncoded = localStorage.getItem('fnp') || false,
+		bug = console.log('checksum', atob(fnpEncoded)),
 		fnp = (fnpEncoded && atob(fnpEncoded)) ? JSON.parse(atob(fnpEncoded)) : {},
 		form = document.getElementById('template_login_form').content.cloneNode(true),
 		buttonTemplate = document.getElementById('template_login_button').content.cloneNode(true),
@@ -81,9 +82,7 @@ var loggator = function (selector) {
 		formParent.querySelector('.flash strong').innerHTML = string.charAt(0).toUpperCase() + string.slice(1) + ' <a href=".">Reload</a>';
 	}
 
-	console.log('checksum', fnp);
 	if (!fnp.hasOwnProperty('token')) fnp.token = false;
-	console.log('end', fnp.token);
 	return fnp.token && getAuth(atob(fnp.token)) ? (
 		button.innerHTML = 'logout',
 		atob(fnp.token)
