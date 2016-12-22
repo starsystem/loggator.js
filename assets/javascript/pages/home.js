@@ -1,1 +1,1 @@
-console.log(logged);
+document.querySelector('main').innerHTML += logged || 'false' ;

@@ -2,8 +2,6 @@
 title: markdown
 permalink: /markdown
 ---
-# Typography
-
 ## Headings
 
 Headings from `h1` through `h6` are constructed with a `#` for each level:
@@ -345,7 +343,7 @@ For example, `<section></section>` should be wrapped as "inline".
 
 Or indent several lines of code by at least four spaces, as in:
 
-``` js
+```
     // Some comments
     line 1 of code
     line 2 of code
