@@ -4,11 +4,7 @@
 @import 'normalize';
 // syntax-rouge highlight
 @import 'syntax';
-
-/*
-*  Themes below
-*/
-
-// theme from https://cdn.rawgit.com/github/fetch/c650070a0e51e87523817a554f120143dbcb1c74/index.html
-// @import 'themes/fetch';
-@import 'themes/layout'; // addition and loggator
+// layout
+@import 'themes/layout';
+// loggator
+@import 'loggator';
