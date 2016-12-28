@@ -7,16 +7,39 @@ The script manage login button/form/dialogs and expose `logged` variable which r
 
 **Include**
 
-- `loggator.js` – Script (defer to access DOM)
-- `loggator.html` – HTML templates (form, login button, dialogs)
-- `loggator.sass` – Styles (form, dialogs)
+- `javascript/loggator.js` – Script (defer to access DOM)
+- `_includes/templates/loggator.html` – HTML templates (form, login button, dialogs)
+- `_sass/loggator.sass` – Styles (form, dialogs)
 
 **Polyfills for older browsers**
 
-- `promise.js`
-- `fetch.js`
-- `template.js`
-- `localStorage`
+- `javascript/polyfills/promise.js`
+- `javascript/polyfills/fetch.js`
+- `javascript/polyfills/template.js`
+- `javascript/polyfills/localStorage.js`
+
+## Jekyll
+
+**Pages**
+
+- Inside `/pages`
+
+```yaml
+---
+title: title
+permalink: /title
+# optional
+navigation_weight: 2
+---
+```
+
+**Pagescripts**
+
+- If `/javascript/pagescripts/title.js` exist, is loaded in `/title` page.
+
+**Themes**
+
+- In `_sass/themes`
 
 **Build**
 

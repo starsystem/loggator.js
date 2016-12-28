@@ -73,12 +73,12 @@ var loggator = function (selector) {
 	}
 
 	function flash (string) {
-		var flashes = document.querySelectorAll('.flash');
+		var flashes = document.querySelectorAll('.dialog');
 		for (var i = 0, len = flashes.length; i < len; i++) {
 			flashes[i].parentNode.removeChild(flashes[i]);
 		}
-		formParent.appendChild(document.getElementById('template_flash').content.cloneNode(true));
-		formParent.querySelector('.flash strong').innerHTML = string.charAt(0).toUpperCase() + string.slice(1) + ' <a href=".">Reload</a>';
+		formParent.appendChild(document.getElementById('template_dialog').content.cloneNode(true));
+		formParent.querySelector('.dialog strong').innerHTML = string.charAt(0).toUpperCase() + string.slice(1) + ' <a href="javascript:history.go(0)">Reload</a>';
 	}
 
 	if (!fnp.hasOwnProperty('token')) fnp.token = false;
